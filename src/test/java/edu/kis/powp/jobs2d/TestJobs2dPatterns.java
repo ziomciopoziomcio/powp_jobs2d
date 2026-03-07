@@ -23,10 +23,14 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
-		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
+		SelectTestFigureOptionListener figure1Listener = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), 1);
 
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+		SelectTestFigureOptionListener figure2Listener = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), 2);
+
+		application.addTest("Figure Joe 1", figure1Listener);
+		application.addTest("Figure Joe 2", figure2Listener);
 	}
 
 	/**
@@ -53,7 +57,7 @@ public class TestJobs2dPatterns {
 //	private static void setupDefaultDrawerVisibilityManagement(Application application) {
 //		DefaultDrawerFrame defaultDrawerWindow = DefaultDrawerFrame.getDefaultDrawerFrame();
 //		application.addComponentMenuElementWithCheckBox(DrawPanelController.class, "Default Drawer Visibility",
-//				new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
+//			new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
 //		defaultDrawerWindow.setVisible(true);
 //	}
 
