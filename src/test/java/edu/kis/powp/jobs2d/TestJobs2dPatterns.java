@@ -33,6 +33,11 @@ public class TestJobs2dPatterns {
 
 		application.addTest("Figure Joe 1", figure1Listener);
 		application.addTest("Figure Joe 2", figure2Listener);
+
+		application.addTest("Figure Jane demo", (ActionEvent e) -> {
+			edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter adapter = new edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter();
+			edu.kis.powp.jobs2d.magicpresets.FiguresJane.figureScript(adapter);
+		});
 	}
 
 	/**
