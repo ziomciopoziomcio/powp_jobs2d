@@ -38,6 +38,15 @@ public class TestJobs2dPatterns {
 			edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter adapter = new edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter();
 			edu.kis.powp.jobs2d.magicpresets.FiguresJane.figureScript(adapter);
 		});
+
+		application.addTest("Draw shapes (ShapeFactory)", (ActionEvent e) -> {
+			Job2dDriver current = DriverFeature.getDriverManager().getCurrentDriver();
+			if (current == null) return;
+			edu.kis.powp.command.ComplexCommand rect = edu.kis.powp.command.ShapeFactory.createRectangle(current, 10, 10, 80, 40);
+			rect.execute();
+			edu.kis.powp.command.ComplexCommand tri = edu.kis.powp.command.ShapeFactory.createTriangle(current, 150, 20, 200, 80, 100, 80);
+			tri.execute();
+		});
 	}
 
 	/**
