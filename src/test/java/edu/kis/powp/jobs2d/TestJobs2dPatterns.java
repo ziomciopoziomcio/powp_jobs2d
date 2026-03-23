@@ -47,6 +47,22 @@ public class TestJobs2dPatterns {
 			edu.kis.powp.command.ComplexCommand tri = edu.kis.powp.command.ShapeFactory.createTriangle(current, 150, 20, 200, 80, 100, 80);
 			tri.execute();
 		});
+
+		application.addTest("Record FiguresJoe and replay", (ActionEvent e) -> {
+			Job2dDriver current = DriverFeature.getDriverManager().getCurrentDriver();
+			if (current == null) return;
+			edu.kis.powp.command.CommandRecordingDriver recorder = new edu.kis.powp.command.CommandRecordingDriver(current);
+			try {
+				edu.kis.powp.jobs2d.magicpresets.FiguresJoe.figureScript1(recorder);
+			} catch (Throwable ex) {
+				recorder.setPosition(0, 0);
+				recorder.operateTo(10, 10);
+				recorder.operateTo(20, 0);
+				recorder.operateTo(0, 0);
+			}
+			edu.kis.powp.command.ComplexCommand recorded = recorder.getRecordedCommand();
+			recorded.execute();
+		});
 	}
 
 	/**
